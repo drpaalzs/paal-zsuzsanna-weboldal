@@ -1,116 +1,482 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Paál Zsuzsánna - Kutatói Weboldal</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #3498db;
-            --bg-color: #f9f9f9;
-            --text-color: #333;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-family: 'Georgia', serif;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            color: #ecf0f1;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-top: -20px;
-            border-radius: 8px;
-        }
-        section {
-            margin-bottom: 2.5rem;
-        }
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-            font-family: 'Georgia', serif;
-        }
-        ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        .contact-info {
-            background-color: #ecf0f1;
-            padding: 1.5rem;
-            border-radius: 5px;
-            text-align: center;
-        }
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Paál Zsuzsánna — Etnológus, muzeológus, kurátor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20303F;
+    --paper:#EDE7D9;
+    --paper-2:#E3DCC9;
+    --rubbing:#7A2E22;
+    --brass:#A9832F;
+    --slate:#5C6670;
+    --line:#C9BFA6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+  header.hero{
+    padding:72px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Source Serif 4', serif;
+    font-weight:600;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .subtitle{
+    font-family:'Source Serif 4', serif;
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--rubbing);
+    margin:0 0 28px;
+  }
+  .hero-bio{
+    max-width:640px;
+    font-size:1.02rem;
+    color:#33424F;
+  }
+  .hero-meta{
+    margin-top:28px;
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--slate);
+  }
+  .hero-meta span strong{color:var(--ink);font-weight:500;}
+  .catalog{
+    padding:64px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .catalog h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin:0 0 32px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .catalog h2::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .label-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-left:3px solid var(--rubbing);
+    padding:22px 26px;
+    margin-bottom:18px;
+    position:relative;
+  }
+  .label-card .catno{
+    position:absolute;
+    top:22px;
+    right:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+  }
+  .label-card h3{
+    font-family:'Source Serif 4', serif;
+    font-weight:600;
+    font-size:1.25rem;
+    margin:0 0 6px;
+    padding-right:90px;
+  }
+  .label-card .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--rubbing);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:12px;
+  }
+  .label-card p{margin:0;font-size:0.98rem;color:#33424F;}
+  .label-card .fields{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--slate);
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+    gap:8px 20px;
+  }
+  .fields b{color:var(--ink);font-weight:500;}
+  .list-section{padding:64px 0;border-bottom:1px solid var(--line);}
+  .list-section h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin:0 0 32px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .list-section h2::after{content:"";flex:1;height:1px;background:var(--line);}
+  .entry{
+    display:grid;
+    grid-template-columns:90px 1fr;
+    gap:20px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .entry:last-child{border-bottom:none;}
+  .entry .yr{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    padding-top:2px;
+  }
+  .entry .content h4{
+    font-family:'Source Serif 4', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    margin:0 0 4px;
+  }
+  .entry .content .venue{
+    font-size:0.92rem;
+    color:var(--slate);
+    font-style:italic;
+  }
+  footer{padding:56px 0 72px;}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:24px;
+    margin-top:24px;
+  }
+  .contact-item{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .contact-item .k{color:var(--slate);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.08em;font-size:11px;}
+  .contact-item a{color:var(--rubbing);text-decoration:none;border-bottom:1px solid var(--rubbing);}
+  .contact-item a:hover{opacity:0.7;}
+  .stamp{
+    margin-top:48px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--slate);
+    letter-spacing:0.05em;
+  }
+  @media (max-width:600px){
+    .entry{grid-template-columns:1fr;gap:4px;}
+    .label-card .catno{position:static;display:block;margin-bottom:8px;}
+    .label-card h3{padding-right:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
 </head>
 <body>
-
-    <header>
-        <h1>Dr. Paál Zsuzsánna</h1>
-        <p>PhD Etnográfus-muzeológus | Gyűjteményvezető</p>
-    </header>
-
-    <div class="container">
-        <section id="bemutatkozas">
-            <h2>Bemutatkozás</h2>
-            <p>A győri Rómer Flóris Művészeti és Történeti Múzeum etnográfus-muzeológusa, a Néprajzi Gyűjtemény, az Imre Patkó Gyűjtemény és a Cserépkályha-történeti Gyűjtemény vezetője vagyok. Emellett a Magyar Néprajzi Társaság Néprajzi Gyűjtő Szakosztályának elnöki tisztét is betöltöm. Munkám során az interdiszciplináris megközelítést, a vizuális antropológiát és a múzeumi interpretációelméletet ötvözöm.</p>
-        </section>
-
-        <section id="kutatas">
-            <h2>Főbb kutatási területek</h2>
-            <ul>
-                <li><strong>Cserépkályha-történet:</strong> A 18-20. századi cserépkályhák és kályhacsempék története, megnyilvánulásai és az ehhez kapcsolódó céhes rendszerek kutatása.</li>
-                <li><strong>Kulturális antropológia és vizuális antropológia:</strong> A "tárgy mint szöveg" elmélet múzeumi gyakorlatba történő átültetése, kiállításrendezési módszertanok.</li>
-                <li><strong>Olasz kultúra és európai etnológia:</strong> Interdiszciplináris kutatások és terepmunka (Padova), valamint az olasz nyelvhez köthető muzeológiai szakirodalom fordítása és interpretációja.</li>
-                <li><strong>Európán kívüli kultúrák:</strong> Afrikai, óceániai, ázsiai és tibeti gyűjtemények kurátori feldolgozása és kiállítási interpretációja (pl. <em>Kultúraközi pillanatfelvétel</em> kiállítás).</li>
-            </ul>
-        </section>
-
-        <section id="publikaciok">
-            <h2>Szakmai tevékenység és publikációk</h2>
-            <p>2021-ben a Széchenyi István Egyetem kiadásában jelent meg tanulmányom a kurátori kutatásokról és a kulturális közvetítés módszereiről. Jelenleg a magyar kézművesség történetének, különösen a fazekas- és kályhásmesterség aktuális helyzetének bibliográfiáján dolgozom a MTA VEAB Kézműves-történeti Munkabizottságának tagjaként. Fontosnak tartom a nemzetközi hálózatépítést, a V4-es regionális projektek szervezését és a határokon átnyúló kutatási együttműködéseket.</p>
-        </section>
-
-        <section id="kapcsolat" class="contact-info">
-            <h2>Kapcsolat</h2>
-            <p><strong>Munkahely:</strong> Rómer Flóris Művészeti és Történeti Múzeum, Győr</p>
-            <p><strong>Székhely:</strong> Budapest, Magyarország</p>
-            <p><em>További információért vagy kutatási együttműködés céljából kérem, vegye fel velem a kapcsolatot a megfelelő akadémiai vagy múzeumi csatornákon.</em></p>
-        </section>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Etnológus · Muzeológus · Kurátor</div>
+    <h1>Paál Zsuzsánna PhD</h1>
+    <p class="subtitle">A tárgy mint szöveg — a csend mint adat</p>
+    <p class="hero-bio">
+      Etnológus, muzeológus és kurátor a győri Rómer Flóris Művészeti és Történeti
+      Múzeumban. Az ELTE-n két, egyenértékű ötéves szakot végzett — néprajzot és
+      olasz nyelv és irodalmat —, mindkettőt önálló terepmunkára épülő szakdolgozattal
+      zárva. PhD fokozat európai etnológiából. Kutatási területem a dokumentálatlan
+      néprajzi gyűjtemények kurátori újraértelmezése, a vizuális antropológia és az
+      olasz–magyar tudományos kapcsolatok metszéspontjában.
+    </p>
+    <div class="hero-meta">
+      <span><strong>Székhely</strong> · Budapest / Győr, Magyarország</span>
+      <span><strong>Intézmény</strong> · Rómer Flóris Múzeum</span>
+      <span><strong>Terület</strong> · Európai etnológia, PhD</span>
     </div>
-
+  </header>
+  <section class="catalog">
+    <h2>Kutatási irányok</h2>
+    <div class="label-card">
+      <span class="catno">no. 01</span>
+      <h3>A Patkó Imre Etnológiai Gyűjtemény</h3>
+      <div class="role">Kurátori kutatás · 2022–</div>
+      <p>
+        305, Afrikából, Óceániából, Tibetből és Ázsiából származó, dokumentáció nélkül
+        a múzeumhoz került tárgy tudományos feldolgozása és kiállítási újraértelmezése.
+        A hiány mint etnográfiai adat: stílusprovincia-alapú azonosítás, regionális
+        szakértői hálózat, radikális átláthatóság mint kurátori etika.
+      </p>
+      <div class="fields">
+        <div><b>Kiállítás</b><br>Kultúraközi pillanatfelvétel</div>
+        <div><b>Megnyitó</b><br>2026. május 18.</div>
+        <div><b>Helyszín</b><br>Rómer Flóris Múzeum, Győr</div>
+      </div>
+    </div>
+    <div class="label-card">
+      <span class="catno">no. 02</span>
+      <h3>Kályhacsempe- és kerámiatörténet</h3>
+      <div class="role">Hosszú távú kutatás</div>
+      <p>
+        Historikus és szecessziós kályhacsempe-hagyomány Közép-Európában, a VEAB
+        Kézművesipar-történeti Munkacsoportjának keretében. Az agyag és a víz
+        anyagi kultúrája mint transzdiszciplináris kutatási terep.
+      </p>
+      <div class="fields">
+        <div><b>Katalógus</b><br>Kályhásmesterség Győrött</div>
+        <div><b>Kiállítás</b><br>Fruhmann-ház, 18–20. sz.</div>
+        <div><b>Publikáció</b><br>Arrabona 60. (2022), 201–246.</div>
+      </div>
+    </div>
+    <div class="label-card">
+      <span class="catno">no. 03</span>
+      <h3>Vizuális antropológia és fotótörténet</h3>
+      <div class="role">Módszertani alap</div>
+      <p>
+        Analóg fotós képzés (1974–1986) és etnológusi pálya metszéspontja: mit mutat,
+        és mit hallgat el a fényképezés a múzeumi tárgyfeldolgozásban. Francesco Faeta
+        és a vizuális antropológia olasz iskolájának magyarországi közvetítése.
+      </p>
+    </div>
+  </section>
+  <section class="list-section">
+    <h2>Válogatott publikációk <span style="font-weight:400;text-transform:none;letter-spacing:0;">(MTMT-alapú)</span></h2>
+    <div class="entry">
+      <div class="yr">2026</div>
+      <div class="content">
+        <h4>Ce que la photographie passe sous silence</h4>
+        <div class="venue">Histoire de l'art, n° 99 (folyamatban)</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2026</div>
+      <div class="content">
+        <h4>Voci dall'acqua: la collezione oceanica Imre Patkó come archivio dell'ambiente acquatico</h4>
+        <div class="venue">VIe Colloque GHZH, Padova — poszter</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2026</div>
+      <div class="content">
+        <h4>Exhibiting the Archive: Visual Anthropology and the Object as Text</h4>
+        <div class="venue">Reframing the Archive, 7th ed.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2025</div>
+      <div class="content">
+        <h4>Tudatos díszítőszándék. Németh Gábor, Balaton környéki műkályha készítő mester Sági János gyűjtésének és a család emlékezetének tükrében</h4>
+        <div class="venue">In: Sági János 150. Balatoni Múzeum, Keszthely, 124–165.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2025</div>
+      <div class="content">
+        <h4>Változások a 19. század végén a cserépkályha készítésében, mintázásában és technológiájában. Egy győri esettanulmány</h4>
+        <div class="venue">In: Kovács Evelin – Tuza Csilla (szerk.): Innováció és megújulás a kézművesiparban. Magyar Nemzeti Levéltár – Néprajzi Múzeum, Budapest, 109–122.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2025</div>
+      <div class="content">
+        <h4>Kályhásmesterség</h4>
+        <div class="venue">Mesterségmozaikok</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2024</div>
+      <div class="content">
+        <h4>Szakmai nap Siófokon a Balaton néprajzáról és a néprajzkutatók Balatonjáról (szerk./szerző)</h4>
+        <div class="venue">Siópart, 2024/4., 88–106.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2024</div>
+      <div class="content">
+        <h4>Iparművészeti cserépkályha az Osztrák–Magyar Monarchiában</h4>
+        <div class="venue">In: Kincses Katalin Mária (szerk.): Anyagi és szellemi javak migrációja a Kárpát-medencében. Gondolat Kiadó, Budapest, 221–251.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2024</div>
+      <div class="content">
+        <h4>Elmozdulás a virtuális tér felé? Digitális és analóg kontextusok a győri múzeumban</h4>
+        <div class="venue">In: Múzeumi örökség és múzeumi kommunikáció (Kriza Könyvek 51.), Kolozsvár</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2023</div>
+      <div class="content">
+        <h4>A cserépkályha-gyűjtemény megőrzéssel történő fejlesztése Győrött: esettanulmány egy kurátori felmérésről</h4>
+        <div class="venue">In: Jakab Albert Zsolt – Vajda András (szerk.): Múzeum – örökség – kommunikáció. Kriza János Néprajzi Társaság, Kolozsvár, 337–353.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2022</div>
+      <div class="content">
+        <h4>Kályhásmesterség Győrött: Cserépkályha- és kályhacsempe kollekció a Fruhmann-házban, 18–20. század. Kiállítási katalógus</h4>
+        <div class="venue">Arrabona, 60. sz., 201–246. · Zenodo (CERN)</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2022</div>
+      <div class="content">
+        <h4>Gyümölcsoltó Boldogasszony ünnepe Szicílián</h4>
+        <div class="venue">önálló közlés</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2021</div>
+      <div class="content">
+        <h4>Inspiráló tárgyak. A győri Fruhmann-kályhagyűjtemény kultúraközvetítő modellje</h4>
+        <div class="venue">In: A múltból táplálkozó jövő – hagyomány és fejlődés. XXV. Apáczai-napok Tudományos Konferencia tanulmánykötete. Széchenyi István Egyetem Apáczai Csere János Kar, Győr, 182–198.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2018</div>
+      <div class="content">
+        <h4>A VI. Tradíció Néprajzi Gyűjtőpályázat – 2018; Tradíció Néprajzi Tábor Szántódon (Vasvári Zoltánnal)</h4>
+        <div class="venue">Néprajzi Hírek, 2018/3.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2013–17</div>
+      <div class="content">
+        <h4>A Tradíció Néprajzi Gyűjtőpályázat és -tábor dokumentálása (öt közlemény)</h4>
+        <div class="venue">Néprajzi Hírek, 2013–2017</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2012</div>
+      <div class="content">
+        <h4>Egyéni parasztsorsok és kollektív identitásvesztés</h4>
+        <div class="venue">In: Bögre Zsuzsanna – Keszei András – Ö. Kovács József (szerk.): Az identitások korlátai. L'Harmattan, Budapest, 155–167.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2008</div>
+      <div class="content">
+        <h4>Enzo Gallori: Genetika — Képes enciklopédia (fordítás)</h4>
+        <div class="venue">Kossuth Kiadó, Budapest</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2008</div>
+      <div class="content">
+        <h4>A nélkülözhetetlen vitaminok (fordítás)</h4>
+        <div class="venue">Kossuth Kiadó, Budapest, 128 p.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2008</div>
+      <div class="content">
+        <h4>Francesco Faeta: Demológia, antropológia, kultúrkritika. Az olasz kérdés (fordítás)</h4>
+        <div class="venue">L'Harmattan Hungaria, Budapest</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2004</div>
+      <div class="content">
+        <h4>Urbanizálódó parasztok? A falusi élet mintái Padova környékén a 20. században</h4>
+        <div class="venue">PhD-disszertáció, ELTE BTK Történelemtudományi Doktori Iskola (Sárkány Mihály) — benyújtva: 2003, védve: 2004</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2003</div>
+      <div class="content">
+        <h4>Sulla religiosità quotidiana nel Padovano</h4>
+        <div class="venue">Verbum: Revue de Linguistique, 5(2), 339–354.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2003</div>
+      <div class="content">
+        <h4>A vallásosság jellege és egyes jelenségei Velence tartományban. Közösségi és egyéni megnyilvánulások</h4>
+        <div class="venue">In: Czövek Judit (szerk.): Imádságos asszony. Tanulmányok Erdélyi Zsuzsanna tiszteletére. Gondolat / Európai Folklór Intézet, Budapest</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2000</div>
+      <div class="content">
+        <h4>Életút és egyén, történelem és közösség. Az olasz élettörténeti kutatások tapasztalatai</h4>
+        <div class="venue">Ethnographia, 111(1–2), 221–254.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">1993</div>
+      <div class="content">
+        <h4>Az élettörténet, mint néprajzi forrás</h4>
+        <div class="venue">A Miskolci Hermann Ottó Múzeum Közleményei, 28.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">1992</div>
+      <div class="content">
+        <h4>"Oh, quant'è bella la Piazza di Siena…": la festa di Siena e la vita in contrada</h4>
+        <div class="venue">szakdolgozat (olasz szak), ELTE BTK Olasz Nyelv és Irodalom Tanszék, témavezető: Király Erzsébet — saját terepmunka alapján, Siena, 1990</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">1991</div>
+      <div class="content">
+        <h4>Árucsere és migráció (a Tokajban 1985. október 28–29-én megrendezett tanácskozás anyaga)</h4>
+        <div class="venue">Tér és Társadalom, 4(2), 115–119.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">1991</div>
+      <div class="content">
+        <h4>Paraszti élet Rákospalota-Ófaluban</h4>
+        <div class="venue">szakdolgozat, ELTE · MEK, 2008</div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <h2 style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--slate); margin:0;">Kapcsolat</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="k">E-mail</span>
+        <a href="mailto:drpaalzs@gmail.com">drpaalzs@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="k">Intézményi</span>
+        <a href="mailto:paal.zsuzsanna@romer.hu">paal.zsuzsanna@romer.hu</a>
+      </div>
+      <div class="contact-item">
+        <span class="k">Múzeum</span>
+        <a href="https://www.romer.hu" target="_blank" rel="noopener">romer.hu</a>
+      </div>
+    </div>
+    <div class="stamp">Rómer Flóris Művészeti és Történeti Múzeum · Győr, Magyarország</div>
+  </footer>
+</div>
 </body>
 </html>
