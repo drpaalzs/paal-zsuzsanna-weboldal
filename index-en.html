@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paál Zsuzsánna PhD — Ethnologist, Museologist, Curator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20303F;
+    --paper:#EDE7D9;
+    --paper-2:#E3DCC9;
+    --rubbing:#7A2E22;
+    --brass:#A9832F;
+    --slate:#5C6670;
+    --line:#C9BFA6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+  .lang-switch{
+    text-align:right;
+    padding:16px 0 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+  }
+  .lang-switch a{color:var(--rubbing);text-decoration:none;border-bottom:1px solid var(--rubbing);}
+  header.hero{
+    padding:32px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Source Serif 4', serif;
+    font-weight:600;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .subtitle{
+    font-family:'Source Serif 4', serif;
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--rubbing);
+    margin:0 0 28px;
+  }
+  .hero-bio{
+    max-width:640px;
+    font-size:1.02rem;
+    color:#33424F;
+  }
+  .hero-meta{
+    margin-top:28px;
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--slate);
+  }
+  .hero-meta span strong{color:var(--ink);font-weight:500;}
+  .catalog{
+    padding:64px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .catalog h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin:0 0 32px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .catalog h2::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .label-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-left:3px solid var(--rubbing);
+    padding:22px 26px;
+    margin-bottom:18px;
+    position:relative;
+  }
+  .label-card .catno{
+    position:absolute;
+    top:22px;
+    right:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+  }
+  .label-card h3{
+    font-family:'Source Serif 4', serif;
+    font-weight:600;
+    font-size:1.25rem;
+    margin:0 0 6px;
+    padding-right:90px;
+  }
+  .label-card .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--rubbing);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:12px;
+  }
+  .label-card p{margin:0;font-size:0.98rem;color:#33424F;}
+  .label-card .fields{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--slate);
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+    gap:8px 20px;
+  }
+  .fields b{color:var(--ink);font-weight:500;}
+  .list-section{padding:64px 0;border-bottom:1px solid var(--line);}
+  .list-section h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin:0 0 32px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .list-section h2::after{content:"";flex:1;height:1px;background:var(--line);}
+  .entry{
+    display:grid;
+    grid-template-columns:90px 1fr;
+    gap:20px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .entry:last-child{border-bottom:none;}
+  .entry .yr{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    padding-top:2px;
+  }
+  .entry .content h4{
+    font-family:'Source Serif 4', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    margin:0 0 4px;
+  }
+  .entry .content .venue{
+    font-size:0.92rem;
+    color:var(--slate);
+    font-style:italic;
+  }
+  footer{padding:56px 0 72px;}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:24px;
+    margin-top:24px;
+  }
+  .contact-item{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .contact-item .k{color:var(--slate);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.08em;font-size:11px;}
+  .contact-item a{color:var(--rubbing);text-decoration:none;border-bottom:1px solid var(--rubbing);}
+  .contact-item a:hover{opacity:0.7;}
+  .stamp{
+    margin-top:48px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--slate);
+    letter-spacing:0.05em;
+  }
+  @media (max-width:600px){
+    .entry{grid-template-columns:1fr;gap:4px;}
+    .label-card .catno{position:static;display:block;margin-bottom:8px;}
+    .label-card h3{padding-right:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lang-switch"><a href="index.html">magyar</a> · English</div>
+  <header class="hero">
+    <div class="eyebrow">Ethnologist · Museologist · Curator</div>
+    <h1>Paál Zsuzsánna PhD</h1>
+    <p class="subtitle">The object as text — silence as data</p>
+    <p class="hero-bio">
+      Ethnologist, museologist and curator at the Rómer Flóris Museum of Art and History
+      (Győr, Hungary). Holds two equivalent five-year degrees from Eötvös Loránd University —
+      in ethnology and in Italian studies — both completed with independent fieldwork-based
+      thesis research. PhD in European ethnology. My research lies at the intersection of the
+      curatorial reinterpretation of undocumented ethnographic and decorative-arts collections,
+      visual anthropology, and Italian–Hungarian scholarly relations.
+    </p>
+    <div class="hero-meta">
+      <span><strong>Based in</strong> · Budapest / Győr, Hungary</span>
+      <span><strong>Institution</strong> · Rómer Flóris Museum</span>
+      <span><strong>Field</strong> · European Ethnology, PhD</span>
+    </div>
+  </header>
+  <section class="catalog">
+    <h2>Research directions</h2>
+    <div class="label-card">
+      <span class="catno">no. 01</span>
+      <h3>The Imre Patkó Ethnological Collection</h3>
+      <div class="role">Curatorial research · 2022–</div>
+      <p>
+        Scholarly processing and exhibition reinterpretation of 305 objects from Africa, Oceania,
+        Tibet and Asia that arrived at the museum without documentation. Absence as ethnographic
+        data: identification through the stylistic-province method, a network of regional experts,
+        and radical transparency as curatorial ethics.
+      </p>
+      <div class="fields">
+        <div><b>Exhibition</b><br>Intercultural Snapshot</div>
+        <div><b>Opening</b><br>18 May 2026</div>
+        <div><b>Venue</b><br>Rómer Flóris Museum, Győr</div>
+      </div>
+    </div>
+    <div class="label-card">
+      <span class="catno">no. 02</span>
+      <h3>History of Tiled Stoves and Ceramics</h3>
+      <div class="role">Long-term research</div>
+      <p>
+        Historicist and Art Nouveau stove-tile traditions in Central Europe, within the framework
+        of the VEAB Working Group on the History of Craftsmanship. The material culture of clay
+        and water as a transdisciplinary research field.
+      </p>
+      <div class="fields">
+        <div><b>Catalogue</b><br>Stove-Making in Győr</div>
+        <div><b>Exhibition</b><br>Fruhmann House, 18th–20th c.</div>
+        <div><b>Publication</b><br>Arrabona 60 (2022), 201–246</div>
+      </div>
+    </div>
+    <div class="label-card">
+      <span class="catno">no. 03</span>
+      <h3>Visual Anthropology and the History of Photography</h3>
+      <div class="role">Methodological foundation</div>
+      <p>
+        The intersection of analogue photographic training (1974–1986) and an ethnologist's career:
+        what photography shows — and what it withholds — in museum object research. Bringing
+        Francesco Faeta and the Italian school of visual anthropology into Hungarian scholarship.
+      </p>
+    </div>
+  </section>
+  <section class="list-section">
+    <h2>Selected publications <span style="font-weight:400;text-transform:none;letter-spacing:0;">(based on MTMT)</span></h2>
+    <div class="entry">
+      <div class="yr">2026</div>
+      <div class="content">
+        <h4>Ce que la photographie passe sous silence</h4>
+        <div class="venue">Histoire de l'art, no. 99 (forthcoming)</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2026</div>
+      <div class="content">
+        <h4>Voci dall'acqua: la collezione oceanica Imre Patkó come archivio dell'ambiente acquatico</h4>
+        <div class="venue">6th GHZH Conference, Padua — poster</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2026</div>
+      <div class="content">
+        <h4>Exhibiting the Archive: Visual Anthropology and the Object as Text</h4>
+        <div class="venue">Reframing the Archive, 7th ed.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2025</div>
+      <div class="content">
+        <h4>A Deliberate Decorative Intent. Gábor Németh, a Balaton-region tiled-stove maker, in the light of János Sági's collection and family memory</h4>
+        <div class="venue">In: Sági János 150. Balaton Museum, Keszthely, 124–165.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2025</div>
+      <div class="content">
+        <h4>Changes in Tiled-Stove Production, Patterning and Technology at the End of the 19th Century. A Case Study from Győr</h4>
+        <div class="venue">In: Kovács Evelin – Tuza Csilla (eds.): Innovation and Renewal in Craft Industry. Hungarian National Archives – Museum of Ethnography, Budapest, 109–122.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2025</div>
+      <div class="content">
+        <h4>Stove-Making</h4>
+        <div class="venue">Mesterségmozaikok</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2024</div>
+      <div class="content">
+        <h4>Professional Day in Siófok on the Ethnography of Lake Balaton and "Ethnographers' Balaton" (ed./author)</h4>
+        <div class="venue">Siópart, 2024/4, 88–106.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2024</div>
+      <div class="content">
+        <h4>Decorative-Arts Tiled Stoves in the Austro-Hungarian Monarchy</h4>
+        <div class="venue">In: Kincses Katalin Mária (ed.): Migration of Material and Intellectual Goods in the Carpathian Basin. Gondolat Kiadó, Budapest, 221–251.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2024</div>
+      <div class="content">
+        <h4>A Shift Toward Virtual Space? Digital and Analogue Contexts in the Győr Museum</h4>
+        <div class="venue">In: Museum Heritage and Museum Communication (Kriza Books 51), Cluj-Napoca</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2023</div>
+      <div class="content">
+        <h4>Developing the Tiled-Stove Collection Through Preservation in Győr: A Case Study in Curatorial Assessment</h4>
+        <div class="venue">In: Jakab Albert Zsolt – Vajda András (eds.): Museum – Heritage – Communication. Kriza János Ethnographic Society, Cluj-Napoca, 337–353.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2022</div>
+      <div class="content">
+        <h4>Stove-Making in Győr: Tiled-Stove and Stove-Tile Collection in the Fruhmann House, 18th–20th Century. Exhibition Catalogue</h4>
+        <div class="venue">Arrabona, no. 60, 201–246 · Zenodo (CERN)</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2022</div>
+      <div class="content">
+        <h4>The Feast of the Annunciation in Sicily</h4>
+        <div class="venue">independent publication</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2021</div>
+      <div class="content">
+        <h4>Inspiring Objects. The Cultural-Mediation Model of the Fruhmann Stove Collection in Győr</h4>
+        <div class="venue">In: A Future Nourished by the Past – Tradition and Development. Proceedings of the 25th Apáczai Days Conference. Széchenyi István University, Győr, 182–198.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2018</div>
+      <div class="content">
+        <h4>The 6th "Tradíció" Ethnographic Collection Competition – 2018; Ethnographic Camp in Szántód (with Zoltán Vasvári)</h4>
+        <div class="venue">Néprajzi Hírek, 2018/3</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2013–17</div>
+      <div class="content">
+        <h4>Documentation of the "Tradíció" Ethnographic Collection Competition and Camp (five articles)</h4>
+        <div class="venue">Néprajzi Hírek, 2013–2017</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2012</div>
+      <div class="content">
+        <h4>Individual Peasant Fates and the Loss of Collective Identity</h4>
+        <div class="venue">In: Bögre Zsuzsanna – Keszei András – Ö. Kovács József (eds.): The Limits of Identities. L'Harmattan, Budapest, 155–167.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2008</div>
+      <div class="content">
+        <h4>Enzo Gallori: Genetics — Illustrated Encyclopedia (translation)</h4>
+        <div class="venue">Kossuth Kiadó, Budapest</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2008</div>
+      <div class="content">
+        <h4>Essential Vitamins (translation)</h4>
+        <div class="venue">Kossuth Kiadó, Budapest, 128 p.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2008</div>
+      <div class="content">
+        <h4>Francesco Faeta: Demology, Anthropology, Culture Critique. The Italian Question (translation)</h4>
+        <div class="venue">L'Harmattan Hungaria, Budapest</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2004</div>
+      <div class="content">
+        <h4>Peasants on the Path to Urbanization? Patterns of Village Life around Padua in the 20th Century</h4>
+        <div class="venue">PhD dissertation, ELTE Doctoral School of History (Mihály Sárkány) — submitted 2003, defended 2004</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2003</div>
+      <div class="content">
+        <h4>Sulla religiosità quotidiana nel Padovano</h4>
+        <div class="venue">Verbum: Revue de Linguistique, 5(2), 339–354.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2003</div>
+      <div class="content">
+        <h4>The Character and Certain Manifestations of Religiosity in the Veneto. Communal and Individual Expressions</h4>
+        <div class="venue">In: Czövek Judit (ed.): A Woman of Prayer. Studies in Honour of Zsuzsanna Erdélyi. Gondolat / European Folklore Institute, Budapest</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">2000</div>
+      <div class="content">
+        <h4>Life Course and Individual, History and Community. Experiences from Italian Life-History Research</h4>
+        <div class="venue">Ethnographia, 111(1–2), 221–254.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">1993</div>
+      <div class="content">
+        <h4>Life History as an Ethnographic Source</h4>
+        <div class="venue">Bulletin of the Hermann Ottó Museum, Miskolc, 28.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">1992</div>
+      <div class="content">
+        <h4>"Oh, quant'è bella la Piazza di Siena…": la festa di Siena e la vita in contrada</h4>
+        <div class="venue">Undergraduate thesis (Italian studies), ELTE Department of Italian Language and Literature, supervisor: Erzsébet Király — based on original fieldwork, Siena, 1990</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">1991</div>
+      <div class="content">
+        <h4>Trade and Migration (proceedings of a conference held in Tokaj, 28–29 October 1985)</h4>
+        <div class="venue">Tér és Társadalom, 4(2), 115–119.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="yr">1991</div>
+      <div class="content">
+        <h4>Peasant Life in Rákospalota-Ófalu</h4>
+        <div class="venue">Undergraduate thesis, ELTE · Hungarian Electronic Library (MEK), 2008</div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <h2 style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--slate); margin:0;">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="k">Email</span>
+        <a href="mailto:drpaalzs@gmail.com">drpaalzs@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="k">Institutional</span>
+        <a href="mailto:paal.zsuzsanna@romer.hu">paal.zsuzsanna@romer.hu</a>
+      </div>
+      <div class="contact-item">
+        <span class="k">Museum</span>
+        <a href="https://www.romer.hu" target="_blank" rel="noopener">romer.hu</a>
+      </div>
+    </div>
+    <div class="stamp">Rómer Flóris Museum of Art and History · Győr, Hungary</div>
+  </footer>
+</div>
+</body>
+</html>
