@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voci dall'acqua — Oggetti e video</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sea: #0b3d5c;
+    --sea2: #14627f;
+    --teal: #1f8a8a;
+    --sand: #f4ede0;
+    --sand2: #e8dfd0;
+    --ink: #1a2a35;
+    --slate: #4a6070;
+    --line: #c8bfae;
+    --accent: #7A2E22;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--sand);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+  /* Back link */
+  .back-nav {
+    padding: 18px 0 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--slate);
+  }
+  .back-nav a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+  }
+  .back-nav a:hover { opacity: 0.7; }
+
+  /* Header */
+  header {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+    line-height: 1.1;
+    margin: 0 0 10px;
+    color: var(--sea);
+  }
+  .subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--sea2);
+    margin: 0 0 20px;
+  }
+  .header-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--slate);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 20px;
+  }
+  .header-meta strong { color: var(--ink); font-weight: 500; }
+
+  /* Section headings */
+  .section-head {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin: 0 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-head::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* Object cards */
+  section.oggetti { padding: 52px 0; border-bottom: 1px solid var(--line); }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: var(--sand2);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--sea2);
+    padding: 18px;
+  }
+  .card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 14px;
+    background: #ccc;
+  }
+  /* SVG placeholder fallback */
+  .card-img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--sea) 0%, var(--sea2) 60%, var(--teal) 100%);
+    margin-bottom: 14px;
+  }
+  .card-img-placeholder svg { opacity: 0.35; }
+  .card-no {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    margin-bottom: 6px;
+    letter-spacing: 0.08em;
+  }
+  .card-title {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 6px;
+    color: var(--sea);
+  }
+  .card-origin {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .card-desc {
+    font-size: 0.9rem;
+    color: #3a4d5a;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .card-tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--slate);
+    border: 1px solid var(--line);
+    padding: 2px 7px;
+    letter-spacing: 0.04em;
+  }
+
+  /* Video section */
+  section.video-sec { padding: 52px 0; border-bottom: 1px solid var(--line); }
+  .video-list { display: flex; flex-direction: column; gap: 16px; }
+  .video-item {
+    background: var(--sand2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--teal);
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+    text-decoration: none;
+    color: inherit;
+  }
+  .video-item:hover { border-left-color: var(--sea); }
+  .video-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--sea2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .video-icon svg { fill: var(--sand); }
+  .video-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+  }
+  .video-title {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--sea);
+    margin: 0 0 4px;
+  }
+  .video-desc {
+    font-size: 0.88rem;
+    color: var(--slate);
+  }
+  .video-ext {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    margin-top: 6px;
+  }
+
+  /* Poster link */
+  section.poster-sec { padding: 52px 0; border-bottom: 1px solid var(--line); }
+  .poster-link-block {
+    background: var(--sea);
+    color: var(--sand);
+    padding: 28px 32px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .poster-link-block .pl-icon { flex-shrink: 0; opacity: 0.7; }
+  .poster-link-block .pl-text { flex: 1; min-width: 180px; }
+  .poster-link-block .pl-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .poster-link-block .pl-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--sand);
+    margin: 0 0 6px;
+  }
+  .poster-link-block .pl-sub {
+    font-size: 0.88rem;
+    color: rgba(244,237,224,0.7);
+  }
+  .poster-link-block a.pl-btn {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--sand);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    text-decoration: none;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .poster-link-block a.pl-btn:hover { opacity: 0.85; }
+
+  /* Footer */
+  footer { padding: 48px 0 60px; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .footer-item { font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+  .footer-item .k { color: var(--slate); display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 10px; }
+  .footer-item a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+  .stamp { margin-top: 40px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--slate); letter-spacing: 0.04em; }
+
+  @media (max-width: 600px) {
+    .cards { grid-template-columns: 1fr; }
+    .video-item { grid-template-columns: 1fr; }
+    .video-icon { display: none; }
+    .poster-link-block { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="back-nav">← <a href="../">paálzsuzsánna.hu</a> &nbsp;·&nbsp; <a href="../index-en.html">English</a></div>
+
+  <header>
+    <div class="eyebrow">VIe Colloque GHZH · Padova, 15–17 ottobre 2026 · Poster</div>
+    <h1>Voci dall'acqua</h1>
+    <p class="subtitle">La collezione oceanica Imre Patkó come archivio dell'ambiente acquatico</p>
+    <p style="max-width:640px; font-size:0.98rem; color:#3a4d5a; margin:0 0 4px;">
+      Oggetti selezionati dalla collezione etnologica del <strong>Museo Rómer Flóris</strong> di Győr (Ungheria),
+      con materiali audiovisivi di approfondimento. La collezione comprende 305 oggetti provenienti
+      da Africa, Oceania, Tibet e Asia, acquisiti senza documentazione.
+    </p>
+    <div class="header-meta">
+      <span><strong>Autrice</strong> · Paál Zsuzsánna PhD</span>
+      <span><strong>Istituzione</strong> · Museo Rómer Flóris, Győr</span>
+      <span><strong>Collezione</strong> · Patkó Imre, 305 oggetti</span>
+    </div>
+  </header>
+
+  <!-- Oggetti section -->
+  <section class="oggetti">
+    <h2 class="section-head">Oggetti selezionati</h2>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="white" stroke-width="2"/><path d="M16 24 Q24 14 32 24 Q24 34 16 24Z" fill="white"/></svg>
+        </div>
+        <div class="card-no">RFM · Óceánia · no. 01</div>
+        <div class="card-title">Sepik-folyó maszk</div>
+        <div class="card-origin">Pápua Új-Guinea</div>
+        <p class="card-desc">Rituális fa-maszk a Sepik-folyó menti kultúrából. Antropomorf arc, geometrikus díszítéssel. Az ősök szellemének megjelenítője totemisztikus összefüggésben.</p>
+        <div class="card-tags">
+          <span class="tag">rituális</span>
+          <span class="tag">fa</span>
+          <span class="tag">Melanézia</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48"><path d="M24 8 L28 20 L40 20 L30 28 L34 40 L24 32 L14 40 L18 28 L8 20 L20 20Z" fill="none" stroke="white" stroke-width="2"/></svg>
+        </div>
+        <div class="card-no">RFM · Óceánia · no. 02</div>
+        <div class="card-title">Teknőspáncél-ékszer</div>
+        <div class="card-origin">Melanézia</div>
+        <p class="card-desc">Vésett teknőspáncélból készített melléklet, geometrikus mintázattal. Az óceániai viseleti kultúra és a tengeri erőforrások szimbiózisának tárgyi bizonyítéka.</p>
+        <div class="card-tags">
+          <span class="tag">ékszer</span>
+          <span class="tag">teknős</span>
+          <span class="tag">tenger</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48"><rect x="14" y="10" width="20" height="28" rx="2" fill="none" stroke="white" stroke-width="2"/><line x1="19" y1="22" x2="29" y2="22" stroke="white" stroke-width="1.5"/><line x1="19" y1="28" x2="26" y2="28" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+        <div class="card-no">RFM · Óceánia · no. 03</div>
+        <div class="card-title">Fa halász-amulett</div>
+        <div class="card-origin">Polinézia</div>
+        <p class="card-desc">Stilizált emberi alakot ábrázoló kis szobrocska, valószínűleg halászcsónak-orrba erősített védelmi tárgy. A tengeri utazások és halászat rituális kellékei közé tartozik.</p>
+        <div class="card-tags">
+          <span class="tag">amulett</span>
+          <span class="tag">halászat</span>
+          <span class="tag">Polinézia</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="18" ry="10" fill="none" stroke="white" stroke-width="2"/><line x1="6" y1="24" x2="42" y2="24" stroke="white" stroke-width="1.5"/><path d="M14 18 Q24 10 34 18" fill="none" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+        <div class="card-no">RFM · Óceánia · no. 04</div>
+        <div class="card-title">Rituális tál</div>
+        <div class="card-origin">Új-Hebridák (Vanuatu)</div>
+        <p class="card-desc">Mélyített fa tál, belső felületén gravírozott hullámminták. Szertartásos lakomákon és az ősök tiszteletére rendezett rítusok eszköze.</p>
+        <div class="card-tags">
+          <span class="tag">edény</span>
+          <span class="tag">szertartás</span>
+          <span class="tag">Melanézia</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48"><path d="M10 36 L24 10 L38 36Z" fill="none" stroke="white" stroke-width="2"/><line x1="17" y1="28" x2="31" y2="28" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+        <div class="card-no">RFM · Óceánia · no. 05</div>
+        <div class="card-title">Halfogó háló-nehezék</div>
+        <div class="card-origin">Ausztrália (Queensland)</div>
+        <p class="card-desc">Kőből csiszolt hálónehezék, árkolt rögzítési megoldással. Az ausztráliai bennszülött halászati technológia régészeti és néprajzi forrásértékű példánya.</p>
+        <div class="card-tags">
+          <span class="tag">szerszám</span>
+          <span class="tag">halászat</span>
+          <span class="tag">kő</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="14" fill="none" stroke="white" stroke-width="2"/><path d="M24 10 L24 38 M10 24 L38 24" stroke="white" stroke-width="1.5"/><circle cx="24" cy="24" r="4" fill="white" opacity="0.5"/></svg>
+        </div>
+        <div class="card-no">RFM · Óceánia · no. 06</div>
+        <div class="card-title">Kagylóból készült gyűrű</div>
+        <div class="card-origin">Mikronézia</div>
+        <p class="card-desc">Fényes kagylóból csiszolt karikagyűrű, a mikronéziai cserekereskedelmi hálózatok egyik jellegzetes értéktárgya. A tenger mint erőforrás és szimbolikus tér egysége.</p>
+        <div class="card-tags">
+          <span class="tag">kagyló</span>
+          <span class="tag">értéktárgy</span>
+          <span class="tag">Mikronézia</span>
+        </div>
+      </div>
+
+    </div><!-- /cards -->
+    <p style="margin-top:22px; font-size:0.87rem; color:var(--slate); font-family:'IBM Plex Mono',monospace; font-size:11.5px;">
+      * A tárgyképek a konferencia után kerülnek fel. A leírások a múzeumi dokumentáció alapján.
+      Gyűjtemény: Patkó Imre Etnológiai Gyűjtemény, Rómer Flóris Múzeum, Győr.
+    </p>
+  </section>
+
+  <!-- Video section -->
+  <section class="video-sec">
+    <h2 class="section-head">Kísérő videók</h2>
+    <div class="video-list">
+
+      <a class="video-item" href="https://www.youtube.com/watch?v=6Nx2l9O9BDo" target="_blank" rel="noopener">
+        <div class="video-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div>
+          <div class="video-label">CREM · CNRS</div>
+          <div class="video-title">Musiques de l'eau — Óceániai hangszerek</div>
+          <div class="video-desc">Vizes élőhelyekhez kötött hangszerek és zenei hagyományok Óceánia szigetvilágából.</div>
+          <div class="video-ext">↗ youtube.com</div>
+        </div>
+      </a>
+
+      <a class="video-item" href="https://archives.crem-cnrs.fr/" target="_blank" rel="noopener">
+        <div class="video-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        </div>
+        <div>
+          <div class="video-label">CREM · LESC UMR 7186 · CNRS</div>
+          <div class="video-title">Centre de Recherche en Ethnomusicologie — Hangarchívum</div>
+          <div class="video-desc">Az óceániai és afrikai hangfelvételek tudományos archívuma, a poster kutatásainak egyik forrásközpontja.</div>
+          <div class="video-ext">↗ archives.crem-cnrs.fr</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Poster link -->
+  <section class="poster-sec">
+    <h2 class="section-head">A konferencia-poszter</h2>
+    <div class="poster-link-block">
+      <div class="pl-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="5" y="3" width="26" height="30" rx="2" stroke="#f4ede0" stroke-width="1.8"/><line x1="10" y1="11" x2="26" y2="11" stroke="#1f8a8a" stroke-width="1.5"/><line x1="10" y1="16" x2="22" y2="16" stroke="#1f8a8a" stroke-width="1.5"/><line x1="10" y1="21" x2="24" y2="21" stroke="#1f8a8a" stroke-width="1.5"/></svg>
+      </div>
+      <div class="pl-text">
+        <div class="pl-label">A0 poszter · PDF / interaktív HTML</div>
+        <div class="pl-title">Voci dall'acqua — VIe Colloque GHZH, Padova 2026</div>
+        <div class="pl-sub">Paál Zsuzsánna PhD · Rómer Flóris Múzeum, Győr</div>
+      </div>
+      <a class="pl-btn" href="https://drpaalzs.github.io/paal-zsuzsanna-weboldal/voci-dallacqua/">↑ Ez az oldal</a>
+    </div>
+  </section>
+
+  <footer>
+    <h2 style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate);margin:0;">Kapcsolat / Contact</h2>
+    <div class="footer-grid">
+      <div class="footer-item">
+        <span class="k">Kutató / Researcher</span>
+        Paál Zsuzsánna PhD
+      </div>
+      <div class="footer-item">
+        <span class="k">E-mail</span>
+        <a href="mailto:drpaalzs@gmail.com">drpaalzs@gmail.com</a>
+      </div>
+      <div class="footer-item">
+        <span class="k">Múzeum / Museum</span>
+        <a href="https://www.romer.hu" target="_blank" rel="noopener">romer.hu</a>
+      </div>
+      <div class="footer-item">
+        <span class="k">Hangarchívum / Sound archive</span>
+        <a href="https://archives.crem-cnrs.fr/" target="_blank" rel="noopener">CREM–CNRS</a>
+      </div>
+    </div>
+    <div class="stamp">Rómer Flóris Művészeti és Történeti Múzeum · Győr, Magyarország · 2026</div>
+  </footer>
+</div>
+</body>
+</html>
